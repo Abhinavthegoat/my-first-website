@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Personal Portfolio</title>
+
+  <style>
+    :root {
+      --site-primary: #101827;
+      --site-secondary: #d9f36a;
+      --site-background: #f2f1ec;
+      --site-on-primary: #ffffff;
+      --site-on-background: #101827;
+      --site-font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--site-font-body);
+      color: #101827;
+      background: var(--site-background);
+    }
+
+    .app-root {
+      min-height: 100vh;
+      width: 100%;
+      background: var(--site-background);
+      overflow: hidden;
+    }
+
+    .topbar {
+      max-width: 1160px;
+      margin: auto;
+      padding: 25px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    nav {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      padding: 6px;
+      border: 1px solid #deded6;
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 15px;
+      border-radius: 999px;
+    }
+
+    nav a:hover {
+      background: #d9f36a;
+      color: #101827;
+    }
+
+    .hero {
+      background: #101827;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: 1160px;
+      margin: auto;
+      padding: clamp(95px, 13vw, 165px) 6%;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .profile-photo {
+      width: 100%;
+      max-width: 330px;
+      aspect-ratio: 4 / 5;
+      justify-self: end;
+      object-fit: cover;
+      object-position: center 25%;
+      border-radius: 28px;
+      border: 1px solid rgba(217,243,106,.5);
+      box-shadow: 0 24px 65px rgba(0,0,0,.35);
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .24em;
+      font-size: 10px;
+      font-weight: 850;
+      color: #d9f36a;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(54px, 9vw, 108px);
+      line-height: .91;
+      letter-spacing: -.075em;
+      margin: 0;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #c4cbd5;
+      line-height: 1.85;
+      font-size: 15px;
+      margin-top: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 21px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
+      transition: .22s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,.14);
+    }
+
+    .btn-light {
+      background: #d9f36a;
+      color: #101827;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.38);
+      color: white;
+    }
+
+    main {
+      max-width: 1160px;
+      margin: auto;
+      padding: 0 6%;
+    }
+
+    section {
+      padding: 92px 0;
+      border-bottom: 1px solid #deded6;
+    }
+
+    .section-label {
+      color: #68736a;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: 10px;
+      font-weight: 900;
+      margin-bottom: 17px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      margin: 0 0 22px;
+    }
+
+    .intro {
+      max-width: 760px;
+      font-size: 16px;
+      line-height: 1.9;
+      color: #53627a;
+    }
+
+    .about-showcase {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .about-main {
+      padding: 46px;
+      background: white;
+      border: 1px solid #e4e3dc;
+      border-radius: 26px;
+      box-shadow: 0 18px 45px rgba(16,24,39,.045);
+    }
+
+    .about-main h2 {
+      max-width: 520px;
+      font-size: clamp(38px, 5vw, 62px);
+      letter-spacing: -.06em;
+      line-height: 1.02;
+    }
+
+    .about-cta {
+      padding: 40px;
+      border-radius: 26px;
+      background: #101827;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 330px;
+      box-shadow: 0 18px 45px rgba(16,24,39,.12);
+    }
+
+    .about-cta .section-label {
+      color: #d9f36a;
+    }
+
+    .about-cta h2 {
+      font-size: clamp(30px, 3.5vw, 43px);
+      letter-spacing: -.05em;
+    }
+
+    .about-cta p {
+      color: #d6e1f5;
+      line-height: 1.85;
+      font-size: 15px;
+    }
+
+    .about-cta .btn {
+      align-self: flex-start;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .tile {
+      background: white;
+      border: 1px solid #e4e3dc;
+      border-radius: 22px;
+      padding: 29px;
+      min-height: 205px;
+      transition: .25s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 22px 45px rgba(16,24,39,.09);
+    }
+
+    .tile .number {
+      color: #68736a;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .15em;
+    }
+
+    .tile h3 {
+      font-size: 19px;
+      margin: 22px 0 9px;
+    }
+
+    .tile p {
+      font-size: 13px;
+      line-height: 1.75;
+      color: #617089;
+      margin: 0;
+    }
+
+    .certificate {
+      margin-top: 28px;
+      padding: 34px;
+      border: 1px solid #e4e3dc;
+      border-radius: 24px;
+      background: white;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      box-shadow: 0 18px 45px rgba(16,24,39,.045);
+    }
+
+    .certificate-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: #d9f36a;
+      color: #101827;
+      font-size: 25px;
+      flex: 0 0 auto;
+    }
+
+    .certificate h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+
+    .certificate p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #53627a;
+    }
+
+    .certificate-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 28px;
+      border-radius: 18px;
+      border: 1px solid #e4e3dc;
+      box-shadow: 0 18px 45px rgba(16,24,39,.08);
+    }
+
+    .footer {
+      max-width: 1160px;
+      margin: auto;
+      padding: 32px 6% 42px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #68736a;
+      font-size: 11px;
+      letter-spacing: .04em;
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav { gap: 5px; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photo {
+        justify-self: start;
+        width: min(100%, 280px);
+      }
+
+      .grid,
+      .about-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .about-main,
+      .about-cta {
+        padding: 28px;
+      }
+
+      .about-cta { min-height: 280px; }
+
+      .certificate { align-items: flex-start; }
+
+      .footer { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="app-root">
+
+  <header class="topbar">
+    <div class="brand">PERSONAL PORTFOLIO</div>
+
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#interests">What I Do</a>
+      <a href="#certificate">Certificate</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-inner">
+
+      <div class="hero-copy">
+        <div class="eyebrow">Student · Creator · Future Innovator</div>
+
+        <h1>Curious mind.<br>Builder's mindset.</h1>
+
+        <p>
+          I'm a student who enjoys turning ideas into things that actually work.
+          From robotics and electronics to coding and creative projects,
+          I'm always learning, experimenting and building what's next.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#about">Get to know me</a>
+          <a class="btn btn-outline" href="#interests">Explore my interests</a>
+        </div>
+      </div>
+
+      <img
+        class="profile-photo"
+        src="Robotics Founder in Thoughtful Focus.png"
+        alt="Abhinav in his robotics workspace"
+      >
+
+    </div>
+  </div>
+
+  <main>
+
+    <section id="about">
+      <div class="about-showcase">
+
+        <div class="about-main">
+          <div class="section-label">ABOUT ME</div>
+
+          <h2>Hi, I'm a Young Innovator.</h2>
+
+          <p class="intro">
+            I'm a student passionate about robotics, artificial intelligence,
+            and creative technology. I enjoy turning ideas into real projects,
+            experimenting with electronics, and building solutions to
+            everyday problems.
+          </p>
+
+          <a
+            class="btn btn-light"
+            href="https://github.com/Abhinavthegoat"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Connect with me ↗
+          </a>
+        </div>
+
+        <div class="about-cta">
+          <div>
+            <div class="section-label">HAVE AN IDEA?</div>
+
+            <h2>Let's build something.</h2>
+
+            <p>
+              I believe great ideas start with curiosity.
+              Let's create, experiment, and bring something new to life.
+            </p>
+          </div>
+
+          <a
+            class="btn btn-light"
+            href="https://wa.me/2347042854486?text=Hi%2C%20I%20would%20like%20to%20collaborate%20with%20you%21%0A%0AName%3A%20%0AProject%3A%20"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Connect with me ↗
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="section-label">02 / What I'm into</div>
+
+      <h2>Ideas are better when you build them.</h2>
+
+      <p class="intro">
+        A few areas that keep me curious and motivated.
+      </p>
+
+      <div class="grid">
+
+        <article class="tile">
+          <div class="number">01 — ROBOTICS</div>
+          <h3>Robotics & electronics</h3>
+          <p>
+            Building with ESP32, sensors, motors and practical electronic
+            systems. I enjoy taking a real-world problem and exploring
+            how a robot or circuit could solve it.
+          </p>
+        </article>
+
+        <article class="tile">
+          <div class="number">02 — SOFTWARE</div>
+          <h3>Coding & web design</h3>
+          <p>
+            Creating websites and digital tools with HTML, CSS and JavaScript,
+            while learning how software can make useful ideas accessible.
+          </p>
+        </article>
+
+        <article class="tile">
+          <div class="number">03 — INNOVATION</div>
+          <h3>Projects & competitions</h3>
+          <p>
+            Exploring ideas in areas like smart systems, agriculture
+            technology and student robotics challenges—and always looking
+            for the next project to take further.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="certificate">
+      <div class="section-label">03 / Recognition</div>
+
+      <h2>Certificates & achievements.</h2>
+
+      <p class="intro">
+        A space for the milestones, certificates and experiences
+        that are part of my journey.
+      </p>
+
+      <div class="certificate">
+        <div class="certificate-icon" aria-hidden="true">✦</div>
+
+        <div>
+          <div class="section-label">CHITTI FUTURE SCHOOL · 2024–25</div>
+
+          <h3>Diploma in STEM</h3>
+
+          <p>
+            Awarded to Abhinav by Chitti Future School in recognition of
+            dedication, commitment and achievement in STEM. Certified by
+            Mr. Premanand, Founder of LMES &amp; Chitti.
+          </p>
+        </div>
+      </div>
+
+      <img
+        class="certificate-image"
+        src="./Chitti%20STEM%20Diploma%20Certificate.png"
+        alt="Chitti Future School Diploma in STEM certificate awarded to Abhinav for 2024–25"
+        loading="eager"
+        decoding="async"
+      >
+
+    </section>
+
+  </main>
+
+   <footer class="footer">
+    <span>© 2026 · Personal Portfolio</span>
+    <span>For Further information please contact </span>
+    <span>+91 9025918691 </span>
+    <span>+234 7042854486</span>
+    <span>email: Abhinavshetty1426@gmail.com </span>
+  </footer>
+
+</div>
+</body>
+</html>
